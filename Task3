@@ -1,0 +1,93 @@
+import java.util.*;
+
+class atm {
+    BankAccount account;
+    Scanner sc = new Scanner(System.in);
+
+    public atm(double startingBalance) {
+        this.account = new BankAccount(startingBalance);
+    }
+
+    public void bankAccountMenu() {
+        int choice;
+        int amount;
+
+        do {
+            displayMenu();
+            System.out.println("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter amount to withdraw: ");
+                    amount = sc.nextInt();
+                    account.withdraw(amount);
+                    break;
+
+                case 2:
+                    System.out.println("Enter amount to deposit: ");
+                    amount = sc.nextInt();
+                    account.deposit(amount);
+                    break;
+
+                case 3:
+                    System.out.println("Current balance: " + account.checkBalance());
+                    break;
+
+                case 4:
+                    System.out.println("Thank you for using the ATM.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 4);
+    }
+
+    public void displayMenu() {
+        System.out.println("\nATM Menu:");
+        System.out.println("1. Press for Money Withdrawal.");
+        System.out.println("2. Press for Money Deposit.");
+        System.out.println("3. Press for Checking Current Balance.");
+        System.out.println("4. Press for Exit.");
+    }
+}
+class BankAccount {
+    double balance;
+
+    public BankAccount(double startingBalance) {
+        this.balance = startingBalance;
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Your Withdrawal is successful.");
+            System.out.println("Remaining balance: " + balance);
+        } else {
+            System.out.println("Withdrawal failed due to Insufficient balance in your account.");
+        }
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Your Deposit of amount "+amount+ " is successful.");
+            System.out.println("Your Current balance is: " + balance);
+        } else {
+            System.out.println("Deposit failed. Invalid amount entered.");
+        }
+    }
+
+    public double checkBalance() {
+        return balance;
+    }
+}
+public class Task3 {
+    public static void main(String[] args) {
+        System.out.println("Dear Customer, Welcome to this ATM.\nHoping your transaction will be smooth and easier.");
+        atm a = new atm(100000);
+        a.bankAccountMenu();
+    }
+}
+
