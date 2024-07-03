@@ -64,7 +64,7 @@ public class Task {
 
         System.out.println();
         System.out.println("Let's Start The Game.");
-        System.out.println("Random number generated is : " + randomNumber);
+        System.out.println("Random number generated is(for checking purpose only) : " + randomNumber);
         System.out.println();
 
         Task task = new Task();
